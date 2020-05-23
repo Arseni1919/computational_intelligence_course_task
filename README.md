@@ -16,9 +16,7 @@ clients that may be assigned to this facility. We want
  
 ## Example of Running Problem
  
- <img src="media/Comput_Intel_course_pic1.gif" width="700">
- <!--![Running Problem](media/Comput_Intel_course_pic1.gif){:height="70px" width="40px"}
-  {:height="700px" width="400px"} dfgeokgjsoeirgjl -->
+ <img src="media/Comput_Intel_course_pic1.gif" width="500">
   
 # The Algorithms That Were Implemented
 - [ ] Simulated Annealing
