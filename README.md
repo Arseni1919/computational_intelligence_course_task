@@ -1,4 +1,4 @@
-# Kind of problems that this Simulator solves
+# Kind f Problems That This Simulator Solves
 
 We consider the capacitated facility location problem 
 with hard capacities. We are given a set of facilities, 
@@ -19,4 +19,9 @@ clients that may be assigned to this facility. We want
  <img src="media/Comput_Intel_course_pic1.gif" width="700">
  <!--![Running Problem](media/Comput_Intel_course_pic1.gif){:height="70px" width="40px"}
   {:height="700px" width="400px"} dfgeokgjsoeirgjl -->
+  
+# The Algorithms That Were Implemented
+-[x] Simulated Annealing
+-[x] Local Search
+-[x] Tabu Search
  

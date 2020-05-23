@@ -17,6 +17,7 @@ def get_closest_dist_from_facility(city, facilities):
             to_facility = facility
     return min_dist, to_facility
 
+
 def get_closest_cities(facility, cities, facilities):
     closest_set = []
     for city in cities:
@@ -24,6 +25,7 @@ def get_closest_cities(facility, cities, facilities):
         if closest_facility is facility:
             closest_set.append(city)
     return closest_set
+
 
 def get_sum_of_req(closest_cities):
     sum = 0
