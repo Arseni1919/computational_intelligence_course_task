@@ -14,7 +14,8 @@ clients that may be assigned to this facility. We want
  the client assignment costs.
  
  Example of running problem:
- ![Running Problem](media/Comput_Intel_course_pic1.gif){:height="70px" width="40px"}
- <img src="media/Comput_Intel_course_pic1.gif" width="48">
- <!-- {:height="700px" width="400px"} dfgeokgjsoeirgjl -->
+ 
+ <img src="media/Comput_Intel_course_pic1.gif" width="400">
+ <!--![Running Problem](media/Comput_Intel_course_pic1.gif){:height="70px" width="40px"}
+  {:height="700px" width="400px"} dfgeokgjsoeirgjl -->
  
