@@ -10,7 +10,7 @@ clients that may be assigned to this facility. We want
  each client to an open facility so that at most ui 
  clients are assigned to any open facility i. 
  The cost of assigning client j to facility i is 
- given by their distance $c_{ij}$ , and our goal is to 
+ given by their distance c_<sub>ij</sub> , and our goal is to 
  minimize the sum of the facility opening costs and 
  the client assignment costs.
  
