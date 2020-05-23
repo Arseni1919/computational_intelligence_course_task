@@ -14,7 +14,7 @@ clients that may be assigned to this facility. We want
  minimize the sum of the facility opening costs and 
  the client assignment costs.
  
- Example of running problem:
+## Example of Running Problem
  
  <img src="media/Comput_Intel_course_pic1.gif" width="700">
  <!--![Running Problem](media/Comput_Intel_course_pic1.gif){:height="70px" width="40px"}
