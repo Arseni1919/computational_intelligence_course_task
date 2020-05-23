@@ -1,4 +1,5 @@
-Simulator of this kind of problems:
+# Kind of problems that this Simulator solves
+
 We consider the capacitated facility location problem 
 with hard capacities. We are given a set of facilities, 
 F, and a set of clients D in a common metric space. 
@@ -15,7 +16,7 @@ clients that may be assigned to this facility. We want
  
  Example of running problem:
  
- <img src="media/Comput_Intel_course_pic1.gif" width="400">
+ <img src="media/Comput_Intel_course_pic1.gif" width="700">
  <!--![Running Problem](media/Comput_Intel_course_pic1.gif){:height="70px" width="40px"}
   {:height="700px" width="400px"} dfgeokgjsoeirgjl -->
  
