@@ -21,7 +21,7 @@ clients that may be assigned to this facility. We want
   {:height="700px" width="400px"} dfgeokgjsoeirgjl -->
   
 # The Algorithms That Were Implemented
--[x] Simulated Annealing
--[x] Local Search
--[x] Tabu Search
+- [x] Simulated Annealing
+- [x] Local Search
+- [x] Tabu Search
  
