@@ -12,7 +12,7 @@ from Algorithms import *
 
 grid_size = 30
 num_of_problems = 10
-num_of_iterations = 50
+num_of_iterations = 10
 num_of_facilities = 10
 ratio = 0.1
 need_to_stop_after_each_problem = True
@@ -23,7 +23,8 @@ pygame.init()
 
 # Create the screen object
 # The size is determined by the constant SCREEN_WIDTH and SCREEN_HEIGHT
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+screen = pygame.display.set_mode((SCREEN_HEIGHT, SCREEN_HEIGHT))
+# screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 # Run until the user asks to quit
 for problem in range(num_of_problems):
@@ -34,10 +35,10 @@ for problem in range(num_of_problems):
     cities = []
     facilities = []
     cells = pygame.sprite.Group()
-    titles = pygame.sprite.Group()
+    # titles = pygame.sprite.Group()
 
     cell_hight_without_padding = create_field(cells, all_sprites, grid_size)
-    create_titles(titles, all_sprites, 1)
+    # create_titles(titles, all_sprites, 1)
     create_cities(cities, cells, ratio)
     create_facilities(facilities, cells, num_of_facilities)
 

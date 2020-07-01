@@ -1,4 +1,4 @@
-# Kind f Problems That This Simulator Solves
+# Kind of Problems That This Simulator Solves
 
 We consider the capacitated facility location problem 
 with hard capacities. We are given a set of facilities, 
@@ -19,9 +19,14 @@ clients that may be assigned to this facility. We want
  <img src="media/Comput_Intel_course_pic1.gif" width="500">
   
 # The Algorithms That Were Implemented
+- [ ] Greedy Algorithm
+- [ ] Construction Heuristic
 - [ ] Simulated Annealing
 - [ ] Local Search
 - [ ] Tabu Search
+- [ ] Genetic Algorithm
+- [ ] 
+- [ ] 
 - [x] ...
 - [x] ...
  
