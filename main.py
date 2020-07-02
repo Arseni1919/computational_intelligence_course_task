@@ -6,6 +6,7 @@
 from main_help_functions import *
 from Algorithms import *
 from greedy import *
+from constraction_heuristic import *
 
 # ------------------------------------------------------- #
 # -------------------- INPUT SETTING -------------------- #
@@ -29,7 +30,7 @@ pygame.init()
 screen = pygame.display.set_mode((SCREEN_HEIGHT, SCREEN_HEIGHT))
 # screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
-# Run until the user asks to quit
+# Run problems
 for problem in range(num_of_problems):
     print('#' * 80)
 
@@ -45,6 +46,7 @@ for problem in range(num_of_problems):
     create_cities(cities, cells, ratio)
     create_facilities(facilities, cells, num_of_facilities)
 
+    # run iterations
     for iteration in range(num_of_iterations):
 
         for event in pygame.event.get():
@@ -64,6 +66,7 @@ for problem in range(num_of_problems):
         # ------------------------------------------------------------------------------------------------------------ #
         print(f'[problem {problem + 1}][iteration {iteration}]: utility = {calc_utility(cells)}')
         # greedy_move_example(cities, facilities, cells, cell_hight_without_padding*10)
+        # history = ch(iteration, history, cities, facilities, cells, cell_hight_without_padding * dist)
         history = greedy(iteration, history, cities, facilities, cells, cell_hight_without_padding * dist)
         # ------------------------------------------------------------------------------------------------------------ #
         # ------------------------------------------------------------------------------------------------------------ #
