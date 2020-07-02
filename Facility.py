@@ -6,11 +6,13 @@ class Facility:
         # super(Facility, self).__init__()
         self.cap = cap
         self.num = num
-        self.coordinates = (-1, -1)
-        self.cell = None
+        self.name = 'facility%s' % num
+        self.kind = 'f'
+        # self.coordinates = (-1, -1)
+        # self.cell = None
 
     def get_cap(self):
         return self.cap
 
-    def get_pos(self):
-        return self.coordinates
+    # def get_pos(self):
+    #     return self.coordinates

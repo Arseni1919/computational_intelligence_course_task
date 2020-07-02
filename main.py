@@ -5,6 +5,7 @@
 # Import and initialize
 from main_help_functions import *
 from Algorithms import *
+from greedy import *
 
 # ------------------------------------------------------- #
 # -------------------- INPUT SETTING -------------------- #
@@ -14,9 +15,11 @@ grid_size = 30
 num_of_problems = 10
 num_of_iterations = 10
 num_of_facilities = 10
+dist = 10
 ratio = 0.1
 need_to_stop_after_each_problem = True
-need_to_render = True
+history = {}
+# need_to_render = True
 # ------------------------------------------------------- #
 
 pygame.init()
@@ -49,18 +52,19 @@ for problem in range(num_of_problems):
             if event.type == KEYDOWN:
                 # Was it the Escape key? If so, stop the loop.
                 if event.key == K_ESCAPE:
-                    need_to_render = False
+                    # need_to_render = False
                     next_problem = True
 
             # Did the user click the window close button? If so, stop the loop.
-            if event.type == QUIT:
-                need_to_render = False
+            # if event.type == QUIT:
+            #     need_to_render = False
 
         # ------------------------------------------------------------------------------------------------------------ #
         # ------------------------------------------------------------------------------------------------------------ #
         # ------------------------------------------------------------------------------------------------------------ #
-        print(f'[problem {problem + 1}][iteration {iteration}]: utility = {calc_utility(cities, facilities)}')
-        greedy_move_example(cities, facilities, cells, cell_hight_without_padding*10)
+        print(f'[problem {problem + 1}][iteration {iteration}]: utility = {calc_utility(cells)}')
+        # greedy_move_example(cities, facilities, cells, cell_hight_without_padding*10)
+        history = greedy(iteration, history, cities, facilities, cells, cell_hight_without_padding * dist)
         # ------------------------------------------------------------------------------------------------------------ #
         # ------------------------------------------------------------------------------------------------------------ #
         # ------------------------------------------------------------------------------------------------------------ #

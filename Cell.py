@@ -8,6 +8,7 @@ class Cell(pygame.sprite.Sprite):
     def __init__(self, cell_size=None, surf_center=None, ord_number=None, cost=0):
         super(Cell, self).__init__()
         self.cell_size = cell_size
+        self.surf_center = surf_center
         self.surf = pygame.Surface((cell_size, cell_size))
         self.surf.fill(EMPTY_COLOR)
         self.rect = self.surf.get_rect(
@@ -36,25 +37,29 @@ class Cell(pygame.sprite.Sprite):
     def add_city(self, city):
         if self.occupied_by:
             raise ValueError()
-        self.occupied_by = 'city', city
-        city.coordinates = self.get_pos()
-        city.cell = self
+        self.occupied_by = city
         self.surf.fill(OCCUPIED_COLOR)
         self.render_number()
 
     def add_facility(self, facility):
         if self.occupied_by:
             raise ValueError()
-        self.occupied_by = 'facility', facility
-        facility.coordinates = self.get_pos()
-        facility.cell = self
+        self.occupied_by = facility
         self.surf.fill(CLOSED_COLOR)
         self.render_number()
 
     def remove_facility(self):
-        self.occupied_by = None
-        self.surf.fill(EMPTY_COLOR)
-        self.render_number()
+        if self.occupied_by:
+            if self.occupied_by.kind == 'f':
+                self.occupied_by = None
+                self.surf.fill(EMPTY_COLOR)
+                self.render_number()
+
+    def copy_from(self, another_cell):
+        self.remove_facility()
+        if another_cell.occupied_by.kind == 'f':
+            self.add_facility(another_cell.occupied_by)
+
 
 
     def render_number(self):
