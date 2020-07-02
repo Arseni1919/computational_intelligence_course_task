@@ -20,7 +20,7 @@ clients that may be assigned to this facility. We want
   
 # The Algorithms That Were Implemented
 - [x] Greedy Algorithm
-- [ ] Construction Heuristic
+- [x] Construction Heuristic
 - [ ] Simulated Annealing
 - [ ] Local Search
 - [ ] Tabu Search
