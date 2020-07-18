@@ -7,6 +7,7 @@ from main_help_functions import *
 from Algorithms import *
 from greedy import *
 from constraction_heuristic import *
+from SA import *
 
 # ------------------------------------------------------- #
 # -------------------- INPUT SETTING -------------------- #
@@ -14,15 +15,17 @@ from constraction_heuristic import *
 
 grid_size = 30
 num_of_problems = 10
-num_of_iterations = 10
+num_of_iterations = 100
 num_of_facilities = 10
 dist = 10
 ratio = 0.1
-need_to_stop_after_each_problem = True
+need_to_stop_after_each_problem = False
+need_to_save_results = True
 history = {}
+results = np.zeros((num_of_iterations, num_of_problems))
 # need_to_render = True
 # ------------------------------------------------------- #
-
+start = time.time()
 pygame.init()
 
 # Create the screen object
@@ -32,6 +35,7 @@ screen = pygame.display.set_mode((SCREEN_HEIGHT, SCREEN_HEIGHT))
 
 # Run problems
 for problem in range(num_of_problems):
+    print()
     print('#' * 80)
 
     # Instantiate
@@ -48,7 +52,7 @@ for problem in range(num_of_problems):
 
     # run iterations
     for iteration in range(num_of_iterations):
-
+        results[iteration][problem] = calc_utility(cells)
         for event in pygame.event.get():
             # Did the user hit a key?
             if event.type == KEYDOWN:
@@ -64,10 +68,11 @@ for problem in range(num_of_problems):
         # ------------------------------------------------------------------------------------------------------------ #
         # ------------------------------------------------------------------------------------------------------------ #
         # ------------------------------------------------------------------------------------------------------------ #
-        print(f'[problem {problem + 1}][iteration {iteration}]: utility = {calc_utility(cells)}')
+        print(f'\r[problem {problem + 1}][iteration {iteration}]: utility = {calc_utility(cells)}', end='')
         # greedy_move_example(cities, facilities, cells, cell_hight_without_padding*10)
         # history = ch(iteration, history, cities, facilities, cells, cell_hight_without_padding * dist)
-        history = greedy(iteration, history, cities, facilities, cells, cell_hight_without_padding * dist)
+        # history = greedy(iteration, history, cities, facilities, cells, cell_hight_without_padding * dist)
+        history = SA(iteration, history, cities, facilities, cells, cell_hight_without_padding * dist)
         # ------------------------------------------------------------------------------------------------------------ #
         # ------------------------------------------------------------------------------------------------------------ #
         # ------------------------------------------------------------------------------------------------------------ #
@@ -94,5 +99,19 @@ for problem in range(num_of_problems):
                     if event.key == K_RETURN:
                         next_problem = True
 
+if need_to_save_results:
+    # pickle.dump(results, open("results/SA.p", "wb"))
+    pickle.dump(results, open("results/ch.p", "wb"))
+    # pickle.dump(results, open("results/greedy.p", "wb"))
+
 # Done! Time to quit.
 pygame.quit()
+end = time.time()
+print('\nIt took {:.2f} minutes to finish the run.'.format((end - start) / 60.0))
+
+'''
+- save results
+- plot results
+- write a report
+- 
+'''

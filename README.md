@@ -7,7 +7,7 @@ Each facility i has a facility opening cost f<sub>i</sub> and
 capacity u<sub>i</sub> that specifies the maximum number of 
 clients that may be assigned to this facility. We want
  to open some facilities from the set F and assign 
- each client to an open facility so that at most ui 
+ each client to an open facility so that at most u<sub>i</sub> 
  clients are assigned to any open facility i. 
  The cost of assigning client j to facility i is 
  given by their distance c<sub>ij</sub> , and our goal is to 
@@ -21,12 +21,9 @@ clients that may be assigned to this facility. We want
 # The Algorithms That Were Implemented
 - [x] Greedy Algorithm (a)
 - [x] Construction Heuristic (a) 
-- [ ] Simulated Annealing (a)
-- [ ] Local Search (r)
-- [ ] Tabu Search (r)
+- [x] Simulated Annealing (a)
+- [x] Local Search (r)
+- [x] Tabu Search (r)
 - [ ] Genetic Algorithm (maybe)
 - [ ] ...
-- [ ] ...
 - [x] ...
-- [x] ...
- 
