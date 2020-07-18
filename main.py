@@ -68,7 +68,7 @@ for problem in range(num_of_problems):
         # ------------------------------------------------------------------------------------------------------------ #
         # ------------------------------------------------------------------------------------------------------------ #
         # ------------------------------------------------------------------------------------------------------------ #
-        print(f'\r[problem {problem + 1}][iteration {iteration}]: utility = {calc_utility(cells)}', end='')
+        print(f'\r[problem {problem + 1}][iteration {iteration + 1}]: utility = {calc_utility(cells)}', end='')
         # greedy_move_example(cities, facilities, cells, cell_hight_without_padding*10)
         # history = ch(iteration, history, cities, facilities, cells, cell_hight_without_padding * dist)
         # history = greedy(iteration, history, cities, facilities, cells, cell_hight_without_padding * dist)
@@ -101,9 +101,9 @@ for problem in range(num_of_problems):
 
 if need_to_save_results:
     # pickle.dump(results, open("results/SA.p", "wb"))
-    pickle.dump(results, open("results/ch.p", "wb"))
+    # pickle.dump(results, open("results/ch.p", "wb"))
     # pickle.dump(results, open("results/greedy.p", "wb"))
-
+    pickle.dump(results, open("results/ROTEM.p", "wb"))
 # Done! Time to quit.
 pygame.quit()
 end = time.time()
