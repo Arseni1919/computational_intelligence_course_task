@@ -34,16 +34,34 @@ def create_cities(cities, cells, ratio):
             # all_sprites.add(city)
 
 
-def create_facilities(facilities, cells, num_of_facilities):
-    finished = 0
-    while finished < num_of_facilities:
-        cell = random.choice(cells.sprites())
-        if not cell.occupied_by:
-            facility = Facility(random.randint(10, 100), finished)
-            cell.add_facility(facility)
-            facilities.append(facility)
-            # all_sprites.add(facility)
-            finished += 1
+def create_facilities(num_of_facilities):
+    facilities = []
+    for i in range(num_of_facilities):
+        facility = Facility(random.randint(10, 100), i)
+        facilities.append(facility)
+    return facilities
+
+
+def put_facilities_on_map(facilities, cells):
+    for cell in cells:
+        if cell.occupied_by:
+            if cell.occupied_by.kind == 'f':
+                cell.remove_facility()
+    for facility in facilities:
+        assigned = False
+        while not assigned:
+            cell = random.choice(cells.sprites())
+            if not cell.occupied_by:
+                cell.add_facility(facility)
+                assigned = True
+    # while finished < num_of_facilities:
+    #     cell = random.choice(cells.sprites())
+    #     if not cell.occupied_by:
+    #         facility = Facility(random.randint(10, 100), finished)
+    #         cell.add_facility(facility)
+    #         facilities.append(facility)
+    #         # all_sprites.add(facility)
+    #         finished += 1
 
 
 def create_titles(titles, all_sprites, mode):

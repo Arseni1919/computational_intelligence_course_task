@@ -1,6 +1,6 @@
 from CONSTANTS import *
 
-links = ["results/SA.p",]
+links = ["results/SA.p", "results/ch.p", "results/greedy.p", ]
 
 for link in links:
     results = pickle.load(open(link, "rb"))
