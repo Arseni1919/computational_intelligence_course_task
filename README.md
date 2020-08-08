@@ -19,11 +19,8 @@ clients that may be assigned to this facility. We want
  <img src="media/Comput_Intel_course_pic1.gif" width="500">
   
 # The Algorithms That Were Implemented
-- [x] Greedy Algorithm (a)
-- [x] Construction Heuristic (a) 
-- [x] Simulated Annealing (a)
-- [x] Local Search (r)
-- [x] Tabu Search (r)
-- [ ] Genetic Algorithm (maybe)
-- [ ] ...
-- [x] ...
+- [x] Greedy Algorithm 
+- [x] Construction Heuristic 
+- [x] Simulated Annealing 
+- [x] Local Search 
+- [x] Genetic Algorithm 

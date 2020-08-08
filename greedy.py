@@ -1,3 +1,4 @@
+
 from Algorithms import *
 from Cell import Cell
 
@@ -17,6 +18,59 @@ from Cell import Cell
 #         if new_util < previous_util:
 #             new_cell.remove_facility()
 #             previous_cell.add_facility(curr_facility)
+
+def generate_allocations(cities, facilities, cells):
+    allocations = np.zeros([len(facilities), len(cities)])
+    curr_facility_indx = 0
+
+    # build dictionary of cities and left request
+    cities_by_req = {}
+    for indx, curr_city in enumerate(cities):
+        # sum the request already answered for each city
+        total_req_answered = 0
+        for row in range(len(allocations)):
+            total_req_answered = total_req_answered + allocations[row][indx]
+
+        request_left = curr_city.get_req() - total_req_answered
+        cities_by_req[curr_city] = request_left
+
+    # open facilities
+    while curr_facility_indx < len(facilities) and requests_not_complete(cities, allocations):
+        # choose the next facility and get its cell
+        curr_facility = facilities[curr_facility_indx]
+        curr_facility_cell = get_cell_of_facility(cells, curr_facility)
+
+        # build dictionary of cities and distances from current facility
+        cities_by_dist = {}
+        for indx, curr_city in enumerate(cities):
+            # calculate the distance from cities with remaining requests to the current facility
+            if curr_city in cities_by_req:
+                city_cell = get_cell_of_city(cells, curr_city)
+                curr_dist = get_dist(curr_facility_cell,city_cell)
+                cities_by_dist[curr_city] = curr_dist
+
+        curr_facility_cap_left = curr_facility.get_cap()
+
+        # add cities to the current facility, from the closest city to the farthest
+        while curr_facility_cap_left > 0 and requests_not_complete(cities, allocations):
+            next_city, next_city_dist = get_closest_city(cities_by_dist)
+
+            next_city_left_req = cities_by_req[next_city]
+
+            if next_city_left_req <= curr_facility_cap_left:
+                allocations[curr_facility.num][next_city.num] = next_city_left_req
+                curr_facility_cap_left = curr_facility_cap_left - next_city_left_req
+                cities_by_req.pop(next_city)
+                cities_by_dist.pop(next_city)
+
+            else:
+                allocations[curr_facility.num][next_city.num] = curr_facility_cap_left
+                cities_by_req[next_city] = next_city_left_req - curr_facility_cap_left
+                curr_facility_cap_left = 0
+
+        curr_facility_indx = curr_facility_indx+1
+
+    return allocations
 
 
 def get_all_possible_positions(curr_cells):
@@ -50,18 +104,26 @@ def get_cells_without_facilities(cells):
     return copy_cells
 
 
-def greedy(iteration, history, cities, facilities, cells, dist):
-    copy_cells = get_cells_without_facilities(cells)
-    curr_best_util = calc_utility(cells)
+def greedy(iteration, history, cities, facilities, cells, allocations, dist):
 
-    for indx, curr_facility in enumerate(facilities):
-        all_possible_positions = get_all_possible_positions(copy_cells)
-        new_cell = random.choice(all_possible_positions)
-        new_cell.add_facility(curr_facility)
+    if iteration == 0:
+        copy_allocations_from_to(generate_allocations(cities, facilities, cells), allocations)
+    else:
+        copy_cells = get_cells_without_facilities(cells)
 
-    new_util = calc_utility(copy_cells)
+        # change allocations to curr allocations, add a function to create that allocation !!!!!!!!!!!!
+        curr_best_util = calc_utility(allocations, cells)
 
-    if new_util > curr_best_util:
-        change_cells_from_to(cells, copy_cells)
+        for indx, curr_facility in enumerate(facilities):
+            all_possible_positions = get_all_possible_positions(copy_cells)
+            new_cell = random.choice(all_possible_positions)
+            new_cell.add_facility(curr_facility)
+
+        new_allocations = generate_allocations(cities, facilities, copy_cells)
+        new_util = calc_utility(new_allocations, copy_cells)
+
+        if new_util > curr_best_util:
+            copy_cells_from_to(copy_cells, cells)
+            copy_allocations_from_to(new_allocations, allocations)
 
     return history

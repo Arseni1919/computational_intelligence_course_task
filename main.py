@@ -7,30 +7,36 @@ from main_help_functions import *
 from Algorithms import *
 from greedy import *
 from constraction_heuristic import *
-from SA import *
+from simulated_anealing import *
+from genetic_algorithm import *
+from local_search import *
+
 
 # ------------------------------------------------------- #
 # -------------------- INPUT SETTING -------------------- #
 # ------------------------------------------------------- #
 
 grid_size = 30
-num_of_problems = 10
-num_of_iterations = 100
+num_of_problems = 5
+num_of_iterations = 50
 num_of_facilities = 10
 dist = 10
 ratio = 0.1
 need_to_stop_after_each_problem = False
 need_to_save_results = True
+add_to_name = f'{num_of_problems}_{num_of_iterations}_{num_of_facilities}_0point1_'
 history = {}
 # results = np.zeros((num_of_iterations, num_of_problems))
 # need_to_render = True
 algorithms = {
-    'SA': ["results/SA.p", SA],
-    'ch': ["results/ch.p", ch],
-    'greedy': ["results/greedy.p", greedy],
-
+    'greedy': [f"results/{add_to_name}greedy.p", greedy],
+    'ch': [f"results/{add_to_name}ch.p", ch],
+    'local_search': [f"results/{add_to_name}local_search.p", local_search],
+    'SA': [f"results/{add_to_name}SA.p", SA],
+    'GA': [f"results/{add_to_name}GA.p", GA],
 }
-algorithms_to_run = ['SA', 'ch', 'greedy']
+# algorithms_to_run = ['GA', 'greedy', 'ch', 'local_search', 'SA', ]
+algorithms_to_run = ['greedy', 'ch', 'local_search', 'SA', ]
 results = np.zeros((len(algorithms_to_run), num_of_iterations, num_of_problems))
 # ------------------------------------------------------- #
 start = time.time()
@@ -56,13 +62,14 @@ for problem in range(num_of_problems):
     # create_titles(titles, all_sprites, 1)
     create_cities(cities, cells, ratio)
     facilities = create_facilities(num_of_facilities)
+
     for indx_of_alg, alg in enumerate(algorithms_to_run):
+        allocations = np.zeros([len(facilities), len(cities)])
         print('\n%s run' % alg)
         put_facilities_on_map(facilities, cells)
 
         # run iterations
         for iteration in range(num_of_iterations):
-            results[indx_of_alg][iteration][problem] = calc_utility(cells)
             for event in pygame.event.get():
                 # Did the user hit a key?
                 if event.type == KEYDOWN:
@@ -83,8 +90,9 @@ for problem in range(num_of_problems):
             # history = ch(iteration, history, cities, facilities, cells, cell_hight_without_padding * dist)
             # history = greedy(iteration, history, cities, facilities, cells, cell_hight_without_padding * dist)
             # history = SA(iteration, history, cities, facilities, cells, cell_hight_without_padding * dist)
-            history = algorithms[alg][1](iteration, history, cities, facilities, cells, cell_hight_without_padding * dist)
-            print(f'\r[problem {problem + 1}][iteration {iteration + 1}]: utility = {calc_utility(cells)}', end='')
+            history = algorithms[alg][1](iteration, history, cities, facilities, cells, allocations, cell_hight_without_padding * dist)
+            print(f'\r[problem {problem + 1}][iteration {iteration + 1}]: utility = {calc_utility(allocations, cells)}', end='')
+            results[indx_of_alg][iteration][problem] = calc_utility(allocations, cells)
             # -------------------------------------------------------------------------------------------------------- #
             # -------------------------------------------------------------------------------------------------------- #
             # -------------------------------------------------------------------------------------------------------- #
@@ -98,7 +106,7 @@ for problem in range(num_of_problems):
 
             # Flip the display
             pygame.display.flip()
-            time.sleep(0.01)
+            time.sleep(0.1)
 
         if need_to_stop_after_each_problem:
             next_problem = False
