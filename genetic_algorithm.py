@@ -319,13 +319,14 @@ def create_child(cities, facilities, cells, parents_facility_locations):
         # add the facility to the selected cell from one of the child parents
         for cell in copied_cells:
             if cell.get_pos() == parents_facility_locations[num_of_open_facilities].get_pos():
-                if cell.occupied_by:
-                    print("cell is occupied by", cell.occupied_by.kind)
-                else:
-                    cell.add_facility(curr_facility)
-        #cell = parents_facility_locations[num_of_open_facilities]
-        #new_cell = Cell(cell.cell_size, cell.surf_center, cell.ord_number, cell.cost)
-        #new_cell.add_facility(curr_facility)
+                mutation_cell = cell
+                while True:
+                    if mutation_cell.occupied_by:
+                        print("cell is occupied by", cell.occupied_by.kind)
+                        mutation_cell = random.choice(copied_cells)
+                    else:
+                        mutation_cell.add_facility(curr_facility)
+                        break
 
         # build dictionary of cities and distances from current facility
         cities_by_dist = {}

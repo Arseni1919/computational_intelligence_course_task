@@ -1,19 +1,24 @@
 from CONSTANTS import *
-
+add_to_name = '5_20_30_0point1_'
 links = ["results/SA.p", "results/ch.p", "results/greedy.p", "results/local_search.p",]
-links = ["results/5_100_0point1_SA.p", "results/5_100_0point1_ch.p",
-         "results/5_100_0point1_greedy.p", "results/5_100_0point1_local_search.p",]
+links = [f"results/{add_to_name}SA.p",
+         f"results/{add_to_name}ch.p",
+         f"results/{add_to_name}greedy.p",
+         f"results/{add_to_name}local_search.p",
+         f'results/{add_to_name}GA.p']
 
 # links = ["results/SA.p", "results/ch.p", "results/greedy.p", "results/local_search.p","results/GA.p"]
 
 for link in links:
     results = pickle.load(open(link, "rb"))
     graph = []
+    x = []
     for i in range(results.shape[0]):
         graph.append(np.mean(results[i]))
-        print(results[i])
+        # print(results[i])
+        x.append(i)
     plt.plot(graph, label=link)
-    print(f'{link}:{graph}')
+    # print(f'{link}:{graph}')
 
 plt.legend()
 plt.title('total rewards')

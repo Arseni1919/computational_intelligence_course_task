@@ -18,8 +18,8 @@ from local_search import *
 
 grid_size = 30
 num_of_problems = 5
-num_of_iterations = 50
-num_of_facilities = 10
+num_of_iterations = 20
+num_of_facilities = 5
 dist = 10
 ratio = 0.1
 need_to_stop_after_each_problem = False
@@ -35,8 +35,9 @@ algorithms = {
     'SA': [f"results/{add_to_name}SA.p", SA],
     'GA': [f"results/{add_to_name}GA.p", GA],
 }
-# algorithms_to_run = ['GA', 'greedy', 'ch', 'local_search', 'SA', ]
-algorithms_to_run = ['greedy', 'ch', 'local_search', 'SA', ]
+# algorithms_to_run = ['GA',]
+algorithms_to_run = ['GA', 'greedy', 'ch', 'local_search', 'SA', ]
+# algorithms_to_run = ['greedy', 'ch', 'local_search', 'SA', ]
 results = np.zeros((len(algorithms_to_run), num_of_iterations, num_of_problems))
 # ------------------------------------------------------- #
 start = time.time()
@@ -64,6 +65,7 @@ for problem in range(num_of_problems):
     facilities = create_facilities(num_of_facilities)
 
     for indx_of_alg, alg in enumerate(algorithms_to_run):
+        print('\n{:.2f} minutes passed from the beginning.'.format((time.time() - start) / 60.0))
         allocations = np.zeros([len(facilities), len(cities)])
         print('\n%s run' % alg)
         put_facilities_on_map(facilities, cells)
