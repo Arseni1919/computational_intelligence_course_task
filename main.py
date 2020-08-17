@@ -16,8 +16,8 @@ from local_search import *
 # -------------------- INPUT SETTING -------------------- #
 # ------------------------------------------------------- #
 
-grid_size = 30
-num_of_problems = 5
+grid_size = 20
+num_of_problems = 15
 num_of_iterations = 20
 num_of_facilities = 5
 dist = 10

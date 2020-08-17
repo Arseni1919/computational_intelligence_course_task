@@ -25,13 +25,11 @@ clients that may be assigned to this facility. We want
 - [x] Local Search 
 - [x] Genetic Algorithm 
 
-## Experiments
-### Settings:
-- 5 problems
-- 0.1 ratio in cities
+## Experiments - Settings & Results
 
 
-| 50 iterations, 10 facilities                     | 20 iterations, 30 facilities |
-| ------------------------------------------------ | ------------- |
-| ![](media/5_poblems_20_iters_10_fac_0point1.png) | ![](media/5_poblems_20_iters_30_fac_0point1.png) |
+| 50 iterations, 10 facilities, 5 problems, 0.1 ratio in cities | 20 iterations, 30 facilities, 5 problems, 0.1 ratio in cities |
+| ------------------------------------------------------------- | ------------- |
+| ![](media/10 fac.png)              | ![](media/30 fac.png) |
+
 
