@@ -30,6 +30,6 @@ clients that may be assigned to this facility. We want
 
 | 50 iterations, 10 facilities, 5 problems, 0.1 ratio in cities | 20 iterations, 30 facilities, 5 problems, 0.1 ratio in cities |
 | ------------------------------------------------------------- | ------------- |
-| ![](media/10 fac.png)              | ![](media/30 fac.png) |
+| ![](media/10_fac.png)              | ![](media/30_fac.png) |
 
 
