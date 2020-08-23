@@ -21,7 +21,7 @@ num_of_problems = 15
 num_of_iterations = 20
 num_of_facilities = 5
 dist = 10
-ratio = 0.3
+ratio = 0.1
 need_to_stop_after_each_problem = False
 need_to_save_results = True
 add_to_name = f'{num_of_problems}_{num_of_iterations}_{num_of_facilities}_0point1_'
@@ -136,6 +136,7 @@ print('#' * 80)
 print('#' * 80)
 print('#' * 80)
 print('\nIt took {:.2f} minutes to finish the run.'.format((end - start) / 60.0))
+print(add_to_name)
 
 '''
 - save results
