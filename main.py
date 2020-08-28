@@ -17,8 +17,8 @@ from local_search import *
 # ------------------------------------------------------- #
 
 grid_size = 20
-num_of_problems = 15
-num_of_iterations = 20
+num_of_problems = 3
+num_of_iterations = 500
 num_of_facilities = 5
 dist = 10
 ratio = 0.1
@@ -35,8 +35,8 @@ algorithms = {
     'SA': [f"results/{add_to_name}SA.p", SA],
     'GA': [f"results/{add_to_name}GA.p", GA],
 }
-# algorithms_to_run = ['GA',]
-algorithms_to_run = ['GA', 'greedy', 'ch', 'local_search', 'SA', ]
+algorithms_to_run = ['local_search', 'SA',]
+# algorithms_to_run = ['GA', 'greedy', 'ch', 'local_search', 'SA', ]
 # algorithms_to_run = ['greedy', 'ch', 'local_search', 'SA', ]
 results = np.zeros((len(algorithms_to_run), num_of_iterations, num_of_problems))
 # ------------------------------------------------------- #
